@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Repositories\PlayerNoteRepository;
 use App\Repositories\PlayerNoteRepositoryInterface;
+use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Set default string length for MySQL compatibility
+        // Prevents "Specified key was too long" error with utf8mb4
+        Builder::defaultStringLength(191);
     }
 }
