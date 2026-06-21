@@ -16,11 +16,11 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Nota
                         </th>
-                        @canany(['delete', 'update'], App\Models\PlayerNote::class)
+                        @if (auth()->user()->can('delete player notes'))
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acciones
                             </th>
-                        @endcanany
+                        @endif
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -60,7 +60,7 @@
     </div>
 
     <!-- Add Note Form -->
-    @can('create', App\Models\PlayerNote::class)
+    @if (auth()->user()->can('create player notes'))
         <div class="mt-6 bg-gray-50 p-6 rounded-lg border border-gray-200">
             <h4 class="text-md font-semibold text-gray-900 mb-4">Agregar Nueva Nota</h4>
 
@@ -109,7 +109,7 @@
                 No tienes permiso para crear notas. Contacta a un administrador.
             </p>
         </div>
-    @endcan
+    @endif
 
     <!-- Toast notifications (optional with Alpine.js) -->
     @if (session('status'))

@@ -18,18 +18,23 @@ class DatabaseSeeder extends Seeder
         // Call permission seeder first
         $this->call(PermissionSeeder::class);
 
-        // Create a test user with all permissions
-        $testUser = User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Create a staff user WITH permissions
+        $staffUser = User::factory()->create([
+            'name' => 'Staff User',
+            'email' => 'staff@example.com',
             'password' => bcrypt('password'),
         ]);
+        $staffUser->assignRole('staff');
 
-        // Give test user all permissions
-        $testUser->givePermissionTo('create player notes');
-        $testUser->givePermissionTo('delete player notes');
+        // Create a viewer user WITHOUT permissions
+        $viewerUser = User::factory()->create([
+            'name' => 'Viewer User',
+            'email' => 'viewer@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        // No role assigned - has no permissions
 
-        // Create additional users for testing
-        User::factory(9)->create();
+        // Create additional users for testing (players)
+        User::factory(8)->create();
     }
 }
