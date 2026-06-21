@@ -44,7 +44,7 @@ Sistema completo de gestión de notas internas para jugadores usando Laravel 13,
 **1. Ubicarse en el proyecto**
 
 ```bash
-cd d:\Projects\player-notes-module-hiram
+cd RUTA_DEL_PROYECTO
 ```
 
 **2. Instalar dependencias**
@@ -54,7 +54,7 @@ composer install
 npm install
 ```
 
-**3. Configurar `.env`** (ya está configurado)
+**3. Configurar `.env`** (Crear Base de Datos)
 
 ```env
 DB_CONNECTION=mysql
